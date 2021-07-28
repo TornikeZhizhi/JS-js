@@ -6,6 +6,7 @@ let winNumber = Math.floor(Math.random() * 20 + 1);
 
 let score = 20;
 let hightScore = 0;
+let hightScore1 = 0;
 
 check.addEventListener("click",function(){
   
@@ -22,7 +23,7 @@ check.addEventListener("click",function(){
             document.querySelector(".highscore").innerText = winNumber
         }
     }
-
+ 
 
     function wasteTry(){
         score--;
