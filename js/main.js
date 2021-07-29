@@ -1,71 +1,127 @@
 
 
-var check = document.querySelector(".check")
-var messageBox = document.querySelector(".message").textContent
-let winNumber = Math.floor(Math.random() * 20 + 1);
+let sectionOne = document.querySelector('.player--0')
+let sectionTwo = document.querySelector('.player--1')
 
-let score = 20;
-let hightScore = 0;
-let hightScore1 = 0;
+let playerTwoScore = document.querySelector("#score--1")
+let playerOneScore = document.querySelector("#score--0")
 
-check.addEventListener("click",function(){
-  
-    let guessNumber = Number(document.querySelector(".guess").value)
+let rollButton = document.querySelector(".btn--roll")
+let holdButton = document.querySelector(".btn--hold")
+let holdNew = document.querySelector(".btn--new")
+let dicImg = document.querySelector(".dice");
+
+
+
+let scoreOneCurrent = document.querySelector("#current--0")
+let scoreTwoCurrent = document.querySelector("#current--1")
+let scoreOneHold = 0;
+let scoreTwoHold = 0;
+
+let scoreOneProgress = 0;
+let scoreTwoProgress = 0;
+
+let firstPlay = true;
+
+
+rollButton.addEventListener("click",function(){
+
+
+    dicImg.style.opacity = "1";
+    let randomDice = Math.floor(Math.random() * 6 + 1)   
+    dicImg.setAttribute("src","img/dice-"+randomDice+".png");
+    dicImg.classList.add("shake")
     
-    function win(){
+    setTimeout(function(){
 
-        document.querySelector(".number").innerText = winNumber;
-        document.querySelector("body").style.background = "#60b347";
-        document.querySelector(".message").innerText = "You Win";
-        
-        if(winNumber > hightScore){
-            hightScore = winNumber
-            document.querySelector(".highscore").innerText = winNumber
-        }
-    }
- 
 
-    function wasteTry(){
-        score--;
-        document.querySelector(".score").innerText = score
+        dicImg.classList.remove("shake")
+    },1000)
+    
 
-    }
+    if(firstPlay){
 
-    if(!guessNumber){
-        document.querySelector(".message").innerText = "no Number!!!"
-    }else {
-        if(guessNumber === winNumber){
+        if(randomDice == 1){
+            scoreOneProgress = 0;
+            playerOneScore.textContent = 0;
+            firstPlay = false;
 
-            win()
+            sectionOne.classList.remove("player--active") 
+            sectionTwo.classList.add("player--active") 
+
+    
         }else {
-    
-            wasteTry()
-          
-            if(guessNumber > winNumber) {
-                document.querySelector(".message").innerText = "Too High"
-    
-            }else {
-                document.querySelector(".message").innerText = "Too Low"
-    
-            }
-    
+            
+            scoreOneProgress = scoreOneProgress + randomDice  
+            playerOneScore.textContent = scoreOneProgress;
+
         }
+     
+    }else {
+        if(randomDice == 1){
+            scoreTwoProgress = 0;
+            playerTwoScore.textContent = 0;
+            firstPlay = true;
+
+            sectionOne.classList.add("player--active") 
+            sectionTwo.classList.remove("player--active") 
+            
+        }else {
+          
+            scoreTwoProgress = scoreTwoProgress + randomDice  
+            playerTwoScore.textContent = scoreTwoProgress;
+
+        }
+
     }
-    
-    
+
+
+
 })
 
 
+holdButton.addEventListener("click",function(){
 
-let again = document.querySelector(".again")
+    if(firstPlay){
+       
+        playerOneScore.textContent = 0;
 
-again.addEventListener("click",function(){
+        scoreOneHold = scoreOneHold + scoreOneProgress;
+        scoreOneCurrent.textContent = scoreOneHold
+        firstPlay = false;
+        sectionOne.classList.remove("player--active") 
+        sectionTwo.classList.add("player--active") 
+        dicImg.style.opacity = "0"
+    }else {
+        
+        playerTwoScore.textContent = 0;
+        scoreTwoHold = scoreTwoHold + scoreTwoProgress;
+        scoreTwoCurrent.textContent = scoreTwoHold
+        firstPlay = true;
+        sectionOne.classList.add("player--active") 
+        sectionTwo.classList.remove("player--active") 
+        dicImg.style.opacity = "0"
 
-    document.querySelector(".number").innerText = "?";
-    document.querySelector(".guess").value = " ";
-    winNumber = Math.floor(Math.random() * 10 + 1)
-    document.querySelector("body").style.background = "#222";
-    document.querySelector(".message").innerText = "Start guessing.."
+    }
 
 })
 
+
+holdNew.addEventListener("click",function(){
+    playerOneScore.textContent = 0;
+    playerTwoScore.textContent = 0;
+
+    scoreOneCurrent.textContent = 0;
+    scoreTwoCurrent.textContent = 0;
+    scoreOneHold = 0;
+    scoreTwoHold = 0;
+    
+    scoreOneProgress = 0;
+    scoreTwoProgress = 0;
+    firstPlay = true;
+    sectionOne.classList.add("player--active") 
+    sectionTwo.classList.remove("player--active") 
+    dicImg.style.opacity = "0"
+
+
+})
