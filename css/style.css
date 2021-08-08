@@ -190,3 +190,26 @@ main {
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+
+.bpSwiper__slide-box * {
+  font-size: 30px;
+
+}
+
+.swiper-slide {
+  height: 150px;
+  width: 150px;
+  background-color: blueviolet;
+}
+.swiper-slide.disable {
+  opacity: 0.5;
+}
+
+
+.swiper-slide.before {
+
+  background-color: chocolate;
+}
+.swiper-slide.active {
+  background-color: green;
+}

@@ -4,11 +4,110 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <title>Pig Game</title>
   </head>
-  <body>
-    <main>
+  <body style="display: block">
+
+    <div class="swiper-container bpSwiper__container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide bpSwiper__slide" data-day="30" data-month="7">
+          <div class="bpSwiper__slide-box">
+            <div class="bpSwiper__slide-block"> </div>
+            <div class="bpSwiper__slide-day">30</div>
+            <div class="bpSwiper__slide-month">ივლისი</div>
+          </div>
+          <div class="bpSwiper__slide-arrow"></div>
+        </div>
+        <div class="swiper-slide bpSwiper__slide" data-day="1" data-month="8">
+          <div class="bpSwiper__slide-box">
+            <div class="bpSwiper__slide-block"></div>
+            <div class="bpSwiper__slide-day">1</div>
+            <div class="bpSwiper__slide-month">აგვისტო</div>
+          </div>
+          <div class="bpSwiper__slide-arrow"></div>
+        </div>
+        <div class="swiper-slide bpSwiper__slide" data-day="2" data-month="8">
+          <div class="bpSwiper__slide-box">
+            <div class="bpSwiper__slide-block"></div>
+            <div class="bpSwiper__slide-day">2</div>
+            <div class="bpSwiper__slide-month">აგვისტო</div>
+          </div>
+          <div class="bpSwiper__slide-arrow"></div>
+        </div>
+        <div class="swiper-slide bpSwiper__slide" data-day="3" data-month="8">
+          <div class="bpSwiper__slide-box">
+            <div class="bpSwiper__slide-block"></div>
+            <div class="bpSwiper__slide-day">3</div>
+            <div class="bpSwiper__slide-month">აგვისტო</div>
+          </div>
+          <div class="bpSwiper__slide-arrow"></div>
+        </div>
+        <div class="swiper-slide bpSwiper__slide" data-day="4" data-month="8">
+          <div class="bpSwiper__slide-box">
+            <div class="bpSwiper__slide-block"></div>
+            <div class="bpSwiper__slide-day">4</div>
+            <div class="bpSwiper__slide-month">აგვისტო</div>
+          </div>
+          <div class="bpSwiper__slide-arrow"></div>
+        </div>
+        <div class="swiper-slide bpSwiper__slide" data-day="5" data-month="8">
+          <div class="bpSwiper__slide-box">
+            <div class="bpSwiper__slide-block"></div>
+            <div class="bpSwiper__slide-day">5</div>
+            <div class="bpSwiper__slide-month">აგვისტო</div>
+          </div>
+          <div class="bpSwiper__slide-arrow"></div>
+        </div>
+        <div class="swiper-slide bpSwiper__slide" data-day="6" data-month="8">
+          <div class="bpSwiper__slide-box">
+            <div class="bpSwiper__slide-block"></div>
+            <div class="bpSwiper__slide-day">6</div>
+            <div class="bpSwiper__slide-month">აგვისტო</div>
+          </div>
+          <div class="bpSwiper__slide-arrow"></div>
+        </div>
+
+        <div class="swiper-slide bpSwiper__slide" data-day="7" data-month="8">
+          <div class="bpSwiper__slide-box">
+            <div class="bpSwiper__slide-block"></div>
+            <div class="bpSwiper__slide-day">7</div>
+            <div class="bpSwiper__slide-month">აგვისტო</div>
+          </div>
+          <div class="bpSwiper__slide-arrow"></div>
+        </div>
+
+        <div class="swiper-slide bpSwiper__slide" data-day="8" data-month="8">
+          <div class="bpSwiper__slide-box">
+            <div class="bpSwiper__slide-block"></div>
+            <div class="bpSwiper__slide-day">8</div>
+            <div class="bpSwiper__slide-month">აგვისტო</div>
+          </div>
+          <div class="bpSwiper__slide-arrow"></div>
+        </div>
+
+        <div class="swiper-slide bpSwiper__slide" data-day="9" data-month="8">
+          <div class="bpSwiper__slide-box">
+            <div class="bpSwiper__slide-block"></div>
+            <div class="bpSwiper__slide-day">9</div>
+            <div class="bpSwiper__slide-month">აგვისტო</div>
+          </div>
+          <div class="bpSwiper__slide-arrow"></div>
+        </div>
+        <div class="swiper-slide bpSwiper__slide" data-day="10" data-month="8">
+          <div class="bpSwiper__slide-box">
+            <div class="bpSwiper__slide-block"></div>
+            <div class="bpSwiper__slide-day">10</div>
+            <div class="bpSwiper__slide-month">აგვისტო</div>
+          </div>
+          <div class="bpSwiper__slide-arrow"></div>
+        </div>
+     
+      </div>
+    </div>
+    <main style="display: none;">
+      
       <section class="player player--0 player--active">
         <h2 class="name" id="name--0">Player 1</h2>
         <p class="score" id="score--0">0</p>
@@ -31,6 +130,8 @@
       <button class="btn btn--roll">🎲 Roll dice</button>
       <button class="btn btn--hold">📥 Hold</button>
     </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

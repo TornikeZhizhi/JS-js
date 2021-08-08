@@ -1,127 +1,170 @@
+'use strict';
+
+// Selecting elements
+const player0El = document.querySelector('.player--0');
+const player1El = document.querySelector('.player--1');
+const score0El = document.querySelector('#score--0');
+const score1El = document.getElementById('score--1');
+const current0El = document.getElementById('current--0');
+const current1El = document.getElementById('current--1');
+
+const diceEl = document.querySelector('.dice');
+const btnNew = document.querySelector('.btn--new');
+const btnRoll = document.querySelector('.btn--roll');
+const btnHold = document.querySelector('.btn--hold');
+
+let scores, currentScore, activePlayer, playing;
+
+// Starting conditions
+const init = function () {
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
+
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+
+  diceEl.classList.add('hidden');
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
+};
+init();
+
+const switchPlayer = function () {
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  currentScore = 0;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  player0El.classList.toggle('player--active');
+  player1El.classList.toggle('player--active');
+};
+
+// Rolling dice functionality
+btnRoll.addEventListener('click', function () {
+  if (playing) {
+    // 1. Generating a random dice roll
+    const dice = Math.trunc(Math.random() * 6) + 1;
+
+    // 2. Display dice
+    diceEl.classList.remove('hidden');
+    diceEl.src = `img/dice-${dice}.png`;
+
+    // 3. Check for rolled 1
+    if (dice !== 1) {
+      // Add dice to current score
+      currentScore += dice;
+      document.getElementById(
+        `current--${activePlayer}`
+      ).textContent = currentScore;
+    } else {
+      // Switch to next player
+      switchPlayer();
+    }
+  }
+});
+
+btnHold.addEventListener('click', function () {
+  if (playing) {
+    // 1. Add current score to active player's score
+    scores[activePlayer] += currentScore;
+    // scores[1] = scores[1] + currentScore
+
+    document.getElementById(`score--${activePlayer}`).textContent =
+      scores[activePlayer];
+
+    // 2. Check if player's score is >= 100
+    if (scores[activePlayer] >= 100) {
+      // Finish the game
+      playing = false;
+      diceEl.classList.add('hidden');
+
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add('player--winner');
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.remove('player--active');
+    } else {
+      // Switch to the next player
+      switchPlayer();
+    }
+  }
+});
+
+btnNew.addEventListener('click', init);
 
 
-let sectionOne = document.querySelector('.player--0')
-let sectionTwo = document.querySelector('.player--1')
 
-let playerTwoScore = document.querySelector("#score--1")
-let playerOneScore = document.querySelector("#score--0")
-
-let rollButton = document.querySelector(".btn--roll")
-let holdButton = document.querySelector(".btn--hold")
-let holdNew = document.querySelector(".btn--new")
-let dicImg = document.querySelector(".dice");
-
-
-
-let scoreOneCurrent = document.querySelector("#current--0")
-let scoreTwoCurrent = document.querySelector("#current--1")
-let scoreOneHold = 0;
-let scoreTwoHold = 0;
-
-let scoreOneProgress = 0;
-let scoreTwoProgress = 0;
-
-let firstPlay = true;
-
-
-rollButton.addEventListener("click",function(){
-
-
-    dicImg.style.opacity = "1";
-    let randomDice = Math.floor(Math.random() * 6 + 1)   
-    dicImg.setAttribute("src","img/dice-"+randomDice+".png");
-    dicImg.classList.add("shake")
-    
-    setTimeout(function(){
+var bpSwiper = new Swiper('.bpSwiper__container', {
+  slidesPerView: 6,
+  spaceBetween: 24,
+  slidesPerGroup: 6,
+  paginationClickable: true,
+  navigation: {
+      nextEl: '.bpSwiper__arrow-right',
+      prevEl: '.bpSwiper__arrow-left',
+  },
+  breakpoints: {
+      320: {
+      slidesPerView: 4,
+      spaceBetween: 0,
+      slidesPerGroup: 4,
+      },
+      940: {
+      slidesPerView: 6,
+      spaceBetween: 25,
+      slidesPerGroup: 6,
+      }
+  }
+});
+var date = new Date();
+var day = date.getDate()
+var month = date.getMonth() + 1
 
 
-        dicImg.classList.remove("shake")
-    },1000)
-    
 
-    if(firstPlay){
+// $(".bpSwiper__slide").each(function(){
 
-        if(randomDice == 1){
-            scoreOneProgress = 0;
-            playerOneScore.textContent = 0;
-            firstPlay = false;
+//   let sliderDay = $(this).data("day"); 
+//   let sliderMonth = $(this).data("month"); 
 
-            sectionOne.classList.remove("player--active") 
-            sectionTwo.classList.add("player--active") 
+//   console.log(sliderDay ,"SliderDay",sliderMonth, "SliderMonth")
 
-    
-        }else {
-            
-            scoreOneProgress = scoreOneProgress + randomDice  
-            playerOneScore.textContent = scoreOneProgress;
 
-        }
-     
-    }else {
-        if(randomDice == 1){
-            scoreTwoProgress = 0;
-            playerTwoScore.textContent = 0;
-            firstPlay = true;
+//   if(sliderMonth < month || sliderDay < day) {
+//     $(this).addClass("before")
+//   }else if (sliderDay == day){
+//     $(this).addClass("active")
+//   }else {
+//     $(this).addClass("disable")
+//   }
 
-            sectionOne.classList.add("player--active") 
-            sectionTwo.classList.remove("player--active") 
-            
-        }else {
-          
-            scoreTwoProgress = scoreTwoProgress + randomDice  
-            playerTwoScore.textContent = scoreTwoProgress;
 
-        }
+  
+ 
 
+//   bpSwiper.slideTo($(this).index())
+
+// })
+
+var index;
+$('.bpSwiper__slide').each(function () {
+    if ($(this).data('day') == day && $(this).data('month') == month) {
+        index = $(this).index()
     }
 
-
-
-})
-
-
-holdButton.addEventListener("click",function(){
-
-    if(firstPlay){
-       
-        playerOneScore.textContent = 0;
-
-        scoreOneHold = scoreOneHold + scoreOneProgress;
-        scoreOneCurrent.textContent = scoreOneHold
-        firstPlay = false;
-        sectionOne.classList.remove("player--active") 
-        sectionTwo.classList.add("player--active") 
-        dicImg.style.opacity = "0"
-    }else {
-        
-        playerTwoScore.textContent = 0;
-        scoreTwoHold = scoreTwoHold + scoreTwoProgress;
-        scoreTwoCurrent.textContent = scoreTwoHold
-        firstPlay = true;
-        sectionOne.classList.add("player--active") 
-        sectionTwo.classList.remove("player--active") 
-        dicImg.style.opacity = "0"
-
+});
+$('.bpSwiper__slide').each(function () {
+    if ($(this).index() > index) {
+        $(this).addClass('disable')
+    }else{
+        $(this).addClass('before');
     }
-
-})
-
-
-holdNew.addEventListener("click",function(){
-    playerOneScore.textContent = 0;
-    playerTwoScore.textContent = 0;
-
-    scoreOneCurrent.textContent = 0;
-    scoreTwoCurrent.textContent = 0;
-    scoreOneHold = 0;
-    scoreTwoHold = 0;
-    
-    scoreOneProgress = 0;
-    scoreTwoProgress = 0;
-    firstPlay = true;
-    sectionOne.classList.add("player--active") 
-    sectionTwo.classList.remove("player--active") 
-    dicImg.style.opacity = "0"
-
-
-})
+});
+console.log(index)
+$('.bpSwiper__slide').eq(index).addClass('active')
+bpSwiper.slideTo(index)
