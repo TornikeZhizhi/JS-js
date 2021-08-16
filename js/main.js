@@ -100,9 +100,10 @@ btnNew.addEventListener('click', init);
 
 
 var bpSwiper = new Swiper('.bpSwiper__container', {
-  slidesPerView: 6,
+  slidesPerView: 3,
   spaceBetween: 24,
-  slidesPerGroup: 6,
+  // slidesPerColumn: 2,
+  slidesPerGroup: 3,
   paginationClickable: true,
   navigation: {
       nextEl: '.bpSwiper__arrow-right',
@@ -110,17 +111,29 @@ var bpSwiper = new Swiper('.bpSwiper__container', {
   },
   breakpoints: {
       320: {
-      slidesPerView: 4,
+      slidesPerView: 2,
       spaceBetween: 0,
-      slidesPerGroup: 4,
+      slidesPerGroup: 2,
       },
       940: {
-      slidesPerView: 6,
-      spaceBetween: 25,
-      slidesPerGroup: 6,
+        slidesPerColumn: 2,
+      slidesPerView: 2,
+      spaceBetween: 5,
+      // slidesPerGroup: 3,
       }
   }
 });
+
+// var swiper = new Swiper(".bpSwiper__container", {
+//   slidesPerView: 3,
+//   slidesPerColumn: 2,
+//   spaceBetween: 30,
+//   pagination: {
+//     el: ".swiper-pagination",
+//     clickable: true,
+//   },
+// });
+
 var date = new Date();
 var day = date.getDate()
 var month = date.getMonth() + 1
@@ -165,6 +178,8 @@ $('.bpSwiper__slide').each(function () {
         $(this).addClass('before');
     }
 });
-console.log(index)
+
 $('.bpSwiper__slide').eq(index).addClass('active')
-bpSwiper.slideTo(index)
+// bpSwiper.slideTo(index)
+
+
